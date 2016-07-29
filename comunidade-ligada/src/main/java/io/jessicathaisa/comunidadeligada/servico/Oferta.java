@@ -7,7 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import org.springframework.data.rest.core.annotation.RestResource;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Oferta extends Framework.Modelo.Oferta {
@@ -44,25 +50,29 @@ public class Oferta extends Framework.Modelo.Oferta {
 	
 	
 	
-	private io.jessicathaisa.comunidadeligada.prestador.Prestador prestador;
+//	private io.jessicathaisa.comunidadeligada.prestador.Prestador prestador;
+	
+//	@ManyToOne
+//	@RestResource(exported = false)
+//	@JsonIgnore
+//	public io.jessicathaisa.comunidadeligada.prestador.Prestador getPrestador() {
+//		return prestador;
+//	}
+//	
+//	public void setPrestador(io.jessicathaisa.comunidadeligada.prestador.Prestador prestador) {
+//		this.prestador = prestador;
+//	}
 	
 	@ManyToOne
-	public io.jessicathaisa.comunidadeligada.prestador.Prestador getPrestador() {
-		return prestador;
-	}
-	
-	public void setPrestador(io.jessicathaisa.comunidadeligada.prestador.Prestador prestador) {
-		this.prestador = prestador;
-	}
-	
-	private io.jessicathaisa.comunidadeligada.servico.Servico servico;
-	
-	@ManyToOne
+	@JoinColumn
+	private io.jessicathaisa.comunidadeligada.servico.Servico servicoEntity;
+
+	@Transient
 	public io.jessicathaisa.comunidadeligada.servico.Servico getServico() {
-		return this.servico;
+		return this.servicoEntity;
 	}
 	
 	public void setServico(io.jessicathaisa.comunidadeligada.servico.Servico servico) {
-		this.servico = servico;
+		this.servicoEntity = servico;
 	}
 }
