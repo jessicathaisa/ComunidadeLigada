@@ -22,28 +22,25 @@ public class PrestadorController <T extends Prestador>{
     
     private PrestadorDAO<T> recuperaDAO(){
         return ((PrestadorDAO<T>) dao.recuperaDAO(PrestadorDAO.class));
-    }
-    
+    }    
     
     public T[] listarPrestador(){
-        
-        return null;
+        return recuperaDAO().findAll();
     }
     
     public void adicionarPrestador(T c){
-        
+        recuperaDAO().add(c);
     }
     
     public void editarPrestador(T c){
-    
+        recuperaDAO().update(c);
     }
     
     public void excluirPrestador(T c){
-    
+        recuperaDAO().delete(c);
     }
     
     public T trazPrestadorPorId(int id){
-    
-        return null;
+        return recuperaDAO().retrieve(id);
     }
 }
