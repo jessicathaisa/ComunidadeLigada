@@ -14,8 +14,6 @@ public abstract class Servico {
     private String descricao;
     private String nome;
     
-    public abstract Servico construir();
-
     /**
      * @return the identificador
      */
