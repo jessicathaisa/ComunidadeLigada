@@ -12,10 +12,5 @@ import Framework.Modelo.Servico;
  * @author Jessica
  */
 public class ServicoComunidade extends Servico{
-
-    @Override
-    public Servico construir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
