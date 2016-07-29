@@ -1,0 +1,78 @@
+<div class="row">  
+  <div class="col-md-12">
+    <h3>Serviços</h3>
+    <button ng-click="novo()" class="btn btn-primary pull-right">Novo</button>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+            Nome
+          </th>
+          <th>
+            Descricao
+          </th>
+          <th>
+            Ações
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in itens">
+          <td>
+            {{item.nome}}
+          </td>
+          <td>
+            {{item.descricao}}
+          </td>
+          <td>
+            <!-- <button ng-click="editar(item)" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-trash"></span></button> -->
+            <button ng-click="remover(item)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="row" ng-show="state == 'cadastro' || state == 'edicao'">
+  <div class="col-md-12">
+    <form name="servicoForm" class="form-horizontal" novalidate>
+      <fieldset>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Nome</label>  
+        <div class="col-md-4">
+        <input ng-model="item.nome" 
+               name="textinput" type="text" placeholder="Nome" class="form-control input-md">
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Descricao</label>  
+        <div class="col-md-4">
+        <input ng-model="item.descricao" 
+               name="textinput" type="text" placeholder="Descricao" class="form-control input-md">
+        </div>
+      </div>
+
+      <!-- Button (Double) -->
+      <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
+          <button ng-click="salvar()" class="btn btn-success">Salvar</button>
+          <button ng-click="cancelar()" class="btn btn-danger">Cancelar</button>
+        </div>
+      </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
