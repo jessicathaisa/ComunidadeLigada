@@ -5,31 +5,43 @@
  */
 package Framework.Fachada;
 
+import Framework.DAO.OfertaDAO;
 import Framework.Modelo.Oferta;
 import Framework.Modelo.Prestador;
 import Framework.Modelo.Servico;
+import Framework.Singleton.DAOSingleton;
 
 /**
  *
  * @author Jessica
  */
-public class OfertaController {
-    public Oferta[] listarOfertasPorPrestador(Prestador p) {
-        return null;
+public class OfertaController<T extends Oferta> {
+    
+    private DAOSingleton dao;
+    public OfertaController() {
+        dao = DAOSingleton.getInstance();
     }
-    public Oferta[] listarOfertasPorServico(Servico p) {
-        return null;
+    
+    private OfertaDAO<T> recuperaDAO(){
+        return ((OfertaDAO<T>) dao.recuperaDAO(OfertaDAO.class));
+    }    
+    
+    public T[] listarOfertasPorPrestador(Prestador p) {
+        return recuperaDAO().findByProvider(p.getIdentificador().intValue());
     }
-    public void adicionarOferta(Oferta o){
-        
+    public T[] listarOfertasPorServico(Servico p) {
+        return recuperaDAO().findByService(p.getIdentificador().intValue());
     }
-    public void editarOferta(Oferta o){
-        
+    public void adicionarOferta(T o){
+        recuperaDAO().add(o);
     }
-    public void excluirOferta(Oferta o){
-        
+    public void editarOferta(T o){
+        recuperaDAO().update(o);
     }
-    public Oferta trazOfertaPorId(int id){
-        return null;
+    public void excluirOferta(T o){
+        recuperaDAO().delete(o);
+    }
+    public T trazOfertaPorId(int id){
+        return recuperaDAO().retrieve(id);
     }
 }

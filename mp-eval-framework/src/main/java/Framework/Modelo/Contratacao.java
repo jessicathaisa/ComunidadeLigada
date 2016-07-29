@@ -18,9 +18,8 @@ public class Contratacao {
     private Cliente cliente;
     private Date dataContratacao;
     private boolean aceite;
-    private boolean finalizadaCliente;
-    private boolean finalizadaPrestador;
-    private int avaliacao;
+    private int avaliacaoCliente;
+    private int avaliacaoPrestador;
 
     /**
      * @return the oferta
@@ -65,17 +64,17 @@ public class Contratacao {
     }
 
     /**
-     * @return the avaliacao
+     * @return the avaliacaoCliente
      */
-    public int getAvaliacao() {
-        return avaliacao;
+    public int getAvaliacaoCliente() {
+        return avaliacaoCliente;
     }
 
     /**
-     * @param avaliacao the avaliacao to set
+     * @param avaliacaoCliente the avaliacaoCliente to set
      */
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
+    public void setAvaliacaoCliente(int avaliacaoCliente) {
+        this.avaliacaoCliente = avaliacaoCliente;
     }
 
     /**
@@ -107,30 +106,16 @@ public class Contratacao {
     }
 
     /**
-     * @return the finalizadaCliente
+     * @return the avaliacaoPrestador
      */
-    public boolean isFinalizada() {
-        return finalizadaCliente;
+    public int getAvaliacaoPrestador() {
+        return avaliacaoPrestador;
     }
 
     /**
-     * @param finalizada the finalizadaCliente to set
+     * @param avaliacaoPrestador the avaliacaoPrestador to set
      */
-    public void setFinalizada(boolean finalizada) {
-        this.finalizadaCliente = finalizada;
-    }
-
-    /**
-     * @return the finalizadaPrestador
-     */
-    public boolean isFinalizadaPrestador() {
-        return finalizadaPrestador;
-    }
-
-    /**
-     * @param finalizadaPrestador the finalizadaPrestador to set
-     */
-    public void setFinalizadaPrestador(boolean finalizadaPrestador) {
-        this.finalizadaPrestador = finalizadaPrestador;
+    public void setAvaliacaoPrestador(int avaliacaoPrestador) {
+        this.avaliacaoPrestador = avaliacaoPrestador;
     }
 }

@@ -6,7 +6,6 @@
 package Framework.Fachada;
 
 import Framework.DAO.ServicoDAO;
-import Framework.Modelo.Cliente;
 import Framework.Modelo.Servico;
 import Framework.Singleton.DAOSingleton;
 /**

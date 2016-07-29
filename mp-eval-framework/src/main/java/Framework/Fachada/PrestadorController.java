@@ -5,33 +5,42 @@
  */
 package Framework.Fachada;
 
+import Framework.DAO.PrestadorDAO;
 import Framework.Modelo.Prestador;
+import Framework.Singleton.DAOSingleton;
 
 /**
  *
  * @author Jessica
  */
-public class PrestadorController {
+public class PrestadorController <T extends Prestador>{
     
-    public Prestador[] listarPrestador(){
-        
-        return null;
+    private DAOSingleton dao;
+    public PrestadorController() {
+        dao = DAOSingleton.getInstance();
     }
     
-    public void adicionarPrestador(Prestador c){
-        
+    private PrestadorDAO<T> recuperaDAO(){
+        return ((PrestadorDAO<T>) dao.recuperaDAO(PrestadorDAO.class));
+    }    
+    
+    public T[] listarPrestador(){
+        return recuperaDAO().findAll();
     }
     
-    public void editarPrestador(Prestador c){
-    
+    public void adicionarPrestador(T c){
+        recuperaDAO().add(c);
     }
     
-    public void excluirPrestador(Prestador c){
-    
+    public void editarPrestador(T c){
+        recuperaDAO().update(c);
     }
     
-    public Prestador trazPrestadorPorId(int id){
+    public void excluirPrestador(T c){
+        recuperaDAO().delete(c);
+    }
     
-        return null;
+    public T trazPrestadorPorId(int id){
+        return recuperaDAO().retrieve(id);
     }
 }
