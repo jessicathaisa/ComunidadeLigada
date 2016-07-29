@@ -10,21 +10,21 @@ package Framework.Modelo;
  * @author Jessica
  */
 public abstract class Servico {
-    private int identificador;
+    private Long identificador;
     private String descricao;
     private String nome;
     
     /**
      * @return the identificador
      */
-    public int getIdentificador() {
+    public Long getIdentificador() {
         return identificador;
     }
 
     /**
      * @param identificador the identificador to set
      */
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(Long identificador) {
         this.identificador = identificador;
     }
 

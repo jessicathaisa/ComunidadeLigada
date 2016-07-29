@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Jessica
  */
 public class Oferta {
-    private int identificador;
+    private Long identificador;
     private String descricao;
     private Servico servico;
     private Prestador prestador;
@@ -24,14 +24,14 @@ public class Oferta {
     /**
      * @return the identificador
      */
-    public int getIdentificador() {
+    public Long getIdentificador() {
         return identificador;
     }
 
     /**
      * @param identificador the identificador to set
      */
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(Long identificador) {
         this.identificador = identificador;
     }
 

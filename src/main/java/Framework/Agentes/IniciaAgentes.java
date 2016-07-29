@@ -27,7 +27,7 @@ public class IniciaAgentes {
         try{ /*Uso de Reflexão para descobrir quais os métodos estão extendendo ClienteDAO*/
             
             Reflections reflections = new Reflections("");
-            Set<Class<? extends AgenteContratacao>> classes = reflections.getSubTypesOf(AgenteContratacao.class);
+            Set<Class<? extends AgenteAvaliacao>> classes = reflections.getSubTypesOf(AgenteAvaliacao.class);
             
             if(classes.isEmpty())
                 throw new Exception("Não foi possível encontrar nenhuma classe AgenteContratacao");
@@ -35,7 +35,7 @@ public class IniciaAgentes {
                 throw new Exception("Existem mais de uma classe do tipo ClienteDAO.");
             
             for (Class<?> clazz : classes) {
-                IniciarAgentes((AgenteContratacao)clazz.newInstance(), "AgenteContratacao", "container");
+                //IniciarAgentes((AgenteContratacao)clazz.newInstance(), "AgenteContratacao", "container");
             }
         }
         catch(Exception ie){
