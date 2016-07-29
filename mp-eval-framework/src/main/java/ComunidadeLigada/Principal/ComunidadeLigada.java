@@ -6,6 +6,7 @@
 package ComunidadeLigada.Principal;
 
 import ComunidadeLigada.Modelo.Morador;
+import Framework.Agentes.IniciaAgentes;
 import Framework.Fachada.ClienteController;
 
 /**
@@ -14,7 +15,7 @@ import Framework.Fachada.ClienteController;
  */
 public class ComunidadeLigada {
     public static void main(String[] args) {
-        //new IniciaAgentes();
+        new IniciaAgentes();
         
         System.out.println("...Iniciando Simulação...\n");
         System.out.println("Cliente A1 entrou no sistema - id=1");

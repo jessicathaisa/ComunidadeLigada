@@ -11,15 +11,13 @@ import java.util.Set;
  *
  * @author Jessica
  */
-public abstract class Prestador {
+public abstract class Prestador implements Avaliavel{
     private Long identificador;
     private String nome;
     private String uri;
     private Set<Servico> servicosPrestados;
     private Set<Contratacao> ofertasCriadas;
     private int avaliacao;
-    
-    public abstract void avaliar();
 
     /**
      * @return the identificador

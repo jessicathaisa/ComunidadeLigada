@@ -5,34 +5,37 @@
  */
 package Framework.Agentes;
 
-import Framework.Modelo.Avaliavel;
+import Framework.Modelo.Cliente;
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.TickerBehaviour;
 import java.util.List;
 
 /**
  *
  * @author Jessica
  */
-public abstract class AgenteAvaliacao<T extends Avaliavel> extends Agent {
+public abstract class AgenteRecomendacao <T extends Cliente> extends Agent {
 
-    public abstract List<T> verificaNovasAvaliacoes();
+    private int timeTicker = 10000;
+    
+    public abstract List<T> verificaClientesParaNotificar();
+
+    public abstract void geraRecomendacao(T obj);
     
     @Override
     protected void setup() {
-        addBehaviour(new CyclicBehaviour(this){
-
+        addBehaviour(new TickerBehaviour(this, this.timeTicker){
             @Override
-            public void action() {
-                List<T> lista = verificaNovasAvaliacoes();
+            protected void onTick() {
+                
+                List<T> lista = verificaClientesParaNotificar();
                 if(lista != null && !lista.isEmpty()){
                     for(T obj : lista){
-                        obj.avaliar();
+                        geraRecomendacao(obj);
                     }
                 }
             }
             
         });
     }
-    
 }

@@ -5,32 +5,43 @@
  */
 package Framework.Fachada;
 
+import Framework.DAO.ServicoDAO;
+import Framework.Modelo.Cliente;
 import Framework.Modelo.Servico;
+import Framework.Singleton.DAOSingleton;
 /**
  *
  * @author Jessica
  */
-public class ServicoController {
+public class ServicoController <T extends Servico> {
     
-    public Servico[] listarServico(){
+    private DAOSingleton dao;
+    public ServicoController() {
+        dao = DAOSingleton.getInstance();
+    }
+    
+    private ServicoDAO<T> recuperaDAO(){
+        return ((ServicoDAO<T>) dao.recuperaDAO(ServicoDAO.class));
+    }
+    
+    public T[] listarServico(){
         
-        return null;
+        return recuperaDAO().findAll();
     }
     
-    public void adicionarServico(Servico c){
-        
+    public void adicionarServico(T c){
+        recuperaDAO().add(c);
     }
     
-    public void editarServico(Servico c){
-    
+    public void editarServico(T c){
+        recuperaDAO().update(c);
     }
     
-    public void excluirServico(Servico c){
-    
+    public void excluirServico(T c){
+        recuperaDAO().delete(c);
     }
     
-    public Servico trazServicoPorId(int id){
-    
-        return null;
+    public T trazServicoPorId(int id){
+        return recuperaDAO().retrieve(id);
     }
 }
