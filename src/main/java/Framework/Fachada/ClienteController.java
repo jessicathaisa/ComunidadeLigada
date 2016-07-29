@@ -22,25 +22,28 @@ public class ClienteController<T extends Cliente> {
     }
     
     public T[] listarCliente(){
-        
-        return null;
+        return recuperaDAO().findAll();
     }
     
     public void adicionarCliente(T c){
-        
+        recuperaDAO().add(c);
     }
     
     public void editarCliente(T c){
-    
+        recuperaDAO().update(c);
     }
     
     public void excluirCliente(T c){
-    
+        recuperaDAO().delete(c);
     }
     
     public T trazClientePorId(int id){
-        T c = ((ClienteDAO<T>) dao.recuperaDAO(ClienteDAO.class)).retrieve(id);
+        T c = recuperaDAO().retrieve(id);
         return c;
+    }
+    
+    private ClienteDAO<T> recuperaDAO(){
+        return ((ClienteDAO<T>) dao.recuperaDAO(ClienteDAO.class));
     }
     
 }
