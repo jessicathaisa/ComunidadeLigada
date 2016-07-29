@@ -5,10 +5,17 @@
  */
 package Framework.DAO;
 
+import Framework.Modelo.Contratacao;
+
 /**
  *
  * @author Jessica
  */
-public class ContratacaoDAO {
-    
+public interface ContratacaoDAO <T extends Contratacao> {
+    public T[] findByProvider();
+    public T[] findByClient();
+    public T add(T c);
+    public T update(T c);
+    public T[] retrieve(int idCliente, int idPrestador);
+    public T retrieve(int id);
 }

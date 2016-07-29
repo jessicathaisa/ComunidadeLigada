@@ -5,58 +5,66 @@
  */
 package Framework.Fachada;
 
+import Framework.DAO.ContratacaoDAO;
 import Framework.Modelo.Cliente;
 import Framework.Modelo.Contratacao;
 import Framework.Modelo.Prestador;
+import Framework.Singleton.DAOSingleton;
+import java.util.Date;
 
 /**
  *
  * @author Jessica
  */
-public class ContratacaoOfertaController {
+public class ContratacaoOfertaController <T extends Contratacao>{
     
-    public Contratacao[] listarOfertasContPorCliente(Cliente c){
-        return null;
+    private DAOSingleton dao;
+    public ContratacaoOfertaController() {
+        dao = DAOSingleton.getInstance();
     }
     
-    public Contratacao[] listarOfertasContPorPrestador(Prestador p){
-        return null;
+    private ContratacaoDAO<T> recuperaDAO(){
+        return ((ContratacaoDAO<T>) dao.recuperaDAO(ContratacaoDAO.class));
+    }    
+    
+    public T[] listarOfertasContPorCliente(Cliente c){
+        return recuperaDAO().findByClient();
     }
     
-    public Contratacao[] listarOfertasContClientePrestador(Cliente c, Prestador p){
-        return null;
+    public T[] listarOfertasContPorPrestador(Prestador p){
+        return recuperaDAO().findByProvider();
     }
     
-    public void contratarOferta(Contratacao o){
-        
+    public T[] listarOfertasContClientePrestador(Cliente c, Prestador p){
+        return recuperaDAO().retrieve(c.getIdentificador().intValue(), p.getIdentificador().intValue());
     }
     
-    public void aceitarContratacaoOferta(Contratacao o){
-        
+    public void contratarOferta(T o){
+        recuperaDAO().add(o);
     }
     
-    public void recusarContratacaoOferta(Contratacao o){
-        
+    public void aceitarContratacaoOferta(T o){
+        o.setAceite(true);
+        o.setDataContratacao(new Date());
+        recuperaDAO().update(o);
     }
     
-    public void cancelarContratacaoOferta(Contratacao o){
-        
+    public void recusarContratacaoOferta(T o){
+        o.setAceite(false);
+        o.setDataContratacao(new Date());
+        recuperaDAO().update(o);
     }
     
-    public void finalizarContratacaoOfertaPrestador(Contratacao o){
-        
+    public void avaliarCliente(T o){
+        recuperaDAO().update(o);
     }
     
-    public void finalizarContratacaoOfertaCliente(Contratacao o){
-        
+    public void avaliarPrestador(T o){
+        recuperaDAO().update(o);
     }
     
-    public void avaliarContratacaoOferta(Contratacao o){
-        
-    }
-    
-    public Contratacao trazOfertaContPorId(int o){
-        return null;
+    public Contratacao trazOfertaContPorId(int id){
+        return recuperaDAO().retrieve(id);
     }
     
 }
