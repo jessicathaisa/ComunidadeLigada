@@ -5,13 +5,13 @@
  */
 package Framework.DAO;
 
-import Framework.Modelo.Cliente;
+import Framework.Modelo.Servico;
 
 /**
  *
  * @author Jessica
  */
-public interface ClienteDAO<T extends Cliente> {
+public interface ServicoDAO<T extends Servico>{
     public T[] findAll();
     public T add(T c);
     public T update(T c);
