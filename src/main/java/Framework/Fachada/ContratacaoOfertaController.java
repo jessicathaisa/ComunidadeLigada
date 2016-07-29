@@ -63,7 +63,7 @@ public class ContratacaoOfertaController <T extends Contratacao>{
         recuperaDAO().update(o);
     }
     
-    public Contratacao trazOfertaContPorId(int id){
+    public T trazOfertaContPorId(int id){
         return recuperaDAO().retrieve(id);
     }
     
