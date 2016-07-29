@@ -5,16 +5,18 @@
  */
 package Framework.Modelo;
 
+import java.util.Set;
+
 /**
  *
  * @author Jessica
  */
 public abstract class Cliente {
-    private int identificador;
+    private Long identificador;
     private String nome;
     private String uri;
-    private Servico[] servicosInteresse;
-    private Contratacao[] ofertasContratadas;
+    private Set<Servico> servicosInteresse;
+    private Set<Contratacao> ofertasContratadas;
     private int avaliacao;
     
     public abstract void avaliar();
@@ -22,14 +24,14 @@ public abstract class Cliente {
     /**
      * @return the identificador
      */
-    public int getIdentificador() {
+    public Long getIdentificador() {
         return identificador;
     }
 
     /**
      * @param identificador the identificador to set
      */
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(Long identificador) {
         this.identificador = identificador;
     }
 
@@ -64,28 +66,28 @@ public abstract class Cliente {
     /**
      * @return the servicosInteresse
      */
-    public Servico[] getServicosInteresse() {
+    public Set<Servico> getServicosInteresse() {
         return servicosInteresse;
     }
 
     /**
      * @param servicosInteresse the servicosInteresse to set
      */
-    public void setServicosInteresse(Servico[] servicosInteresse) {
+    public void setServicosInteresse(Set<Servico> servicosInteresse) {
         this.servicosInteresse = servicosInteresse;
     }
 
     /**
      * @return the ofertasContratadas
      */
-    public Contratacao[] getOfertasContratadas() {
+    public Set<Contratacao> getOfertasContratadas() {
         return ofertasContratadas;
     }
 
     /**
      * @param ofertasContratadas the ofertasContratadas to set
      */
-    public void setOfertasContratadas(Contratacao[] ofertasContratadas) {
+    public void setOfertasContratadas(Set<Contratacao> ofertasContratadas) {
         this.ofertasContratadas = ofertasContratadas;
     }
 

@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Contratacao {
 
-    private int identificador;
+    private Long identificador;
     private Oferta oferta;
     private Cliente cliente;
     private Date dataContratacao;
@@ -81,14 +81,14 @@ public class Contratacao {
     /**
      * @return the identificador
      */
-    public int getIdentificador() {
+    public Long getIdentificador() {
         return identificador;
     }
 
     /**
      * @param identificador the identificador to set
      */
-    public void setIdentificador(int identificador) {
+    public void setIdentificador(Long identificador) {
         this.identificador = identificador;
     }
 

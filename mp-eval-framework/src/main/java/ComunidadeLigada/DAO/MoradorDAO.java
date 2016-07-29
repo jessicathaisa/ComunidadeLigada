@@ -8,8 +8,10 @@ package ComunidadeLigada.DAO;
 import ComunidadeLigada.Modelo.Morador;
 import ComunidadeLigada.Modelo.ServicoComunidade;
 import Framework.DAO.ClienteDAO;
+import Framework.Modelo.Servico;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -58,25 +60,25 @@ public class MoradorDAO implements ClienteDAO<Morador>{
             ResultSet rs = stmt.executeQuery("select * from morador");
             while(rs.next()){
                 Morador m = new Morador();
-                m.setIdentificador(rs.getInt("identificador"));
+                m.setIdentificador(rs.getLong("identificador"));
                 m.setNome(rs.getString("nome"));
                 m.setUri(rs.getString("uri"));
                 
                 
                 PreparedStatement stmt2 = conn.prepareStatement("select s.* from morador_servico ms inner join morador m on ms.morador = m.identificador inner join servico s on s.identificador = ms.servico where m.identificador = ?");
-                stmt2.setInt(1, m.getIdentificador());
+                stmt2.setLong(1, m.getIdentificador());
                 ResultSet rs2 = stmt2.executeQuery();
                 List<ServicoComunidade> servicos = new ArrayList<>();
                 while(rs2.next()){
                     ServicoComunidade serv = new ServicoComunidade();
-                    serv.setIdentificador(rs2.getInt("identificador"));
+                    serv.setIdentificador(rs2.getLong("identificador"));
                     serv.setNome(rs2.getString("nome"));
                     serv.setDescricao(rs2.getString("descricao"));
                     servicos.add(serv);
                 }
                 rs2.close();
                 stmt2.close();
-                m.setServicosInteresse(servicos.toArray(new ServicoComunidade[servicos.size()]));
+                m.setServicosInteresse(new HashSet<Servico>(servicos));
                 moradores.add(m);
             }
             rs.close();
@@ -113,25 +115,25 @@ public class MoradorDAO implements ClienteDAO<Morador>{
             Statement stmt = conn.createStatement(); 
             ResultSet rs = stmt.executeQuery("select * from morador");
             if(rs.next()){
-                m.setIdentificador(rs.getInt("identificador"));
+                m.setIdentificador(rs.getLong("identificador"));
                 m.setNome(rs.getString("nome"));
                 m.setUri(rs.getString("uri"));
                 
                 
                 PreparedStatement stmt2 = conn.prepareStatement("select s.* from morador_servico ms inner join morador m on ms.morador = m.identificador inner join servico s on s.identificador = ms.servico where m.identificador = ?");
-                stmt2.setInt(1, m.getIdentificador());
+                stmt2.setLong(1, m.getIdentificador());
                 ResultSet rs2 = stmt2.executeQuery();
                 List<ServicoComunidade> servicos = new ArrayList<>();
                 while(rs2.next()){
                     ServicoComunidade serv = new ServicoComunidade();
-                    serv.setIdentificador(rs2.getInt("identificador"));
+                    serv.setIdentificador(rs2.getLong("identificador"));
                     serv.setNome(rs2.getString("nome"));
                     serv.setDescricao(rs2.getString("descricao"));
                     servicos.add(serv);
                 }
                 rs2.close();
                 stmt2.close();
-                m.setServicosInteresse(servicos.toArray(new ServicoComunidade[servicos.size()]));
+                m.setServicosInteresse(new HashSet<Servico>(servicos));
             }
             rs.close();
             stmt.close();
