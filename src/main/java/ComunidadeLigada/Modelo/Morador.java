@@ -15,7 +15,7 @@ public class Morador extends Cliente {
 
     @Override
     public void avaliar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Avaliando... " + this.getNome());
     }
     
 }

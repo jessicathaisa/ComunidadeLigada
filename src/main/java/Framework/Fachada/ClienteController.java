@@ -5,6 +5,8 @@
  */
 package Framework.Fachada;
 
+import Framework.DAO.ClienteDAO;
+import Framework.Modelo.Cliente;
 import Framework.Singleton.DAOSingleton;
 
 
@@ -12,33 +14,32 @@ import Framework.Singleton.DAOSingleton;
 /**
  *
  * @author Jessica
- * @param <Cliente>
  */
-public class ClienteController<Cliente> {
+public class ClienteController<T extends Cliente> {
     private DAOSingleton dao;
     public ClienteController() {
         dao = DAOSingleton.getInstance();
     }
     
-    public Cliente[] listarCliente(){
+    public T[] listarCliente(){
         
         return null;
     }
     
-    public void adicionarCliente(Cliente c){
+    public void adicionarCliente(T c){
         
     }
     
-    public void editarCliente(Cliente c){
+    public void editarCliente(T c){
     
     }
     
-    public void excluirCliente(Cliente c){
+    public void excluirCliente(T c){
     
     }
     
-    public Cliente trazClientePorId(int id){
-        Cliente c = (Cliente) dao.clienteDao.retrieve(id);
+    public T trazClientePorId(int id){
+        T c = ((ClienteDAO<T>) dao.recuperaDAO(ClienteDAO.class)).retrieve(id);
         return c;
     }
     
