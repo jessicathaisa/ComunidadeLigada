@@ -15,8 +15,9 @@ public abstract class Prestador {
     private String uri;
     private Servico[] servicosPrestados;
     private Contratacao[] ofertasCriadas;
+    private int avaliacao;
     
-    abstract Cliente construir();
+    public abstract void avaliar();
 
     /**
      * @return the identificador
@@ -86,5 +87,19 @@ public abstract class Prestador {
      */
     public void setOfertasCriadas(Contratacao[] ofertasCriadas) {
         this.ofertasCriadas = ofertasCriadas;
+    }
+
+    /**
+     * @return the avaliacao
+     */
+    public int getAvaliacao() {
+        return avaliacao;
+    }
+
+    /**
+     * @param avaliacao the avaliacao to set
+     */
+    public void setAvaliacao(int avaliacao) {
+        this.avaliacao = avaliacao;
     }
 }

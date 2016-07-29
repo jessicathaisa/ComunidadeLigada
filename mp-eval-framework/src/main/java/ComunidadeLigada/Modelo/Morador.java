@@ -14,7 +14,7 @@ import Framework.Modelo.Cliente;
 public class Morador extends Cliente {
 
     @Override
-    public Cliente construir() {
+    public void avaliar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
