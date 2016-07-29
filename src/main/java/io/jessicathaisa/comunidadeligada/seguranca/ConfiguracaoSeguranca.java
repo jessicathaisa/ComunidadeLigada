@@ -1,7 +1,9 @@
 package io.jessicathaisa.comunidadeligada.seguranca;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 @Configuration
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class ConfiguracaoSeguranca extends GlobalAuthenticationConfigurerAdapter {
 
 	@Autowired
