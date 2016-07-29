@@ -1,11 +1,13 @@
 package io.jessicathaisa.comunidadeligada.servico;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import Framework.DAO.ServicoDAO;
 
 @Repository
+@RepositoryRestResource(collectionResourceRel = "servico", path = "servico")
 public interface RepositorioServico extends JpaRepository<Servico, Long> {
 
 	default public ServicoDAO<Servico> constroiServicoDao(RepositorioServico r) {
