@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -21,7 +22,8 @@ public class ConfiguradorSeguranca extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.anyRequest().fullyAuthenticated()
+			.anyRequest()
+				.fullyAuthenticated()
 			.and()
 				.formLogin()
 					.usernameParameter("usuario")
@@ -29,15 +31,27 @@ public class ConfiguradorSeguranca extends WebSecurityConfigurerAdapter {
 					.successHandler(successHandler())
 					.failureHandler(authenticationFailureHandler())
 			.and()
-				.csrf().disable();
+				.csrf().disable()
+				.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint());
+	}
+
+	private AuthenticationEntryPoint authenticationEntryPoint() {
+		return new AuthenticationEntryPoint() {
+			
+			@Override
+			public void commence(HttpServletRequest arg0, HttpServletResponse arg1, AuthenticationException arg2)
+					throws IOException, ServletException {
+				arg1.sendError(HttpServletResponse.SC_UNAUTHORIZED, arg2.getMessage());
+			}
+		};
 	}
 
 	private AuthenticationFailureHandler authenticationFailureHandler() {
 		return new AuthenticationFailureHandler() {
-			
+
 			@Override
-			public void onAuthenticationFailure(HttpServletRequest arg0, HttpServletResponse arg1, AuthenticationException arg2)
-					throws IOException, ServletException {
+			public void onAuthenticationFailure(HttpServletRequest arg0, HttpServletResponse arg1,
+					AuthenticationException arg2) throws IOException, ServletException {
 				arg1.setStatus(401);
 				arg1.sendError(HttpServletResponse.SC_UNAUTHORIZED);
 			}
@@ -46,7 +60,7 @@ public class ConfiguradorSeguranca extends WebSecurityConfigurerAdapter {
 
 	private AuthenticationSuccessHandler successHandler() {
 		return new AuthenticationSuccessHandler() {
-			
+
 			@Override
 			public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1, Authentication arg2)
 					throws IOException, ServletException {
