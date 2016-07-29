@@ -39,7 +39,7 @@ public class Application extends SpringBootServletInitializer {
 				Usuario usuario = new Usuario();
 				usuario.setLogin("teste");
 				usuario.setSenha("teste");
-				usuario.setPermissoes(new HashSet<String>(Arrays.asList("USUARIO")));
+				usuario.setPermissoes(new HashSet<String>(Arrays.asList("CLIENTE")));
 				a.save(usuario);
 			}
 		};
